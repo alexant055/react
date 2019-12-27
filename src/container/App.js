@@ -31,6 +31,7 @@ class App extends Component {
     this.setState({ persons: persons });
   }
 
+
   changeNameHandler(event, personId) {
     const personIndex = this.state.persons.findIndex(p => { return p.id === personId });
 
