@@ -15,7 +15,8 @@ const persons = (props) => {
                     key={p.id}
                     name={p.name}
                     age={p.age}
-                    clickedDelete={props.deletePerson(p.id)}
+                    clickedDelete={() => props.deletePerson(p.id)}
+                    changed={(event) => props.updateName(event, p.id)}
                 />
             })}
         </div >

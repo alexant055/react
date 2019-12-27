@@ -8,12 +8,6 @@ import './App.scss'
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.deletePersonHandler = this.deletePersonHandler.bind(this);
-    this.showPersonsHandler = this.showPersonsHandler.bind(this);
-  }
-
   state = {
     showPerson: false,
     persons: [
@@ -29,22 +23,42 @@ class App extends Component {
   }
 
   deletePersonHandler = (personId) => {
-    console.log(personId)
+    const personIndex = this.state.persons.findIndex(p => { return p.id === personId });
+
+    const persons = [...this.state.persons];
+    persons.splice(personIndex, 1);
+
+    this.setState({ persons: persons });
+  }
+
+  changeNameHandler(event, personId) {
+    const personIndex = this.state.persons.findIndex(p => { return p.id === personId });
+
+    const persons = [...this.state.persons];
+    persons[personIndex].name = event.target.value;
+
+    this.setState({ persons: persons });
   }
 
   render() {
 
+    let persons = null;
+
+    if (this.state.showPerson) {
+      persons = (<Persons
+        persons={this.state.persons}
+        deletePerson={this.deletePersonHandler}
+        updateName={this.changeNameHandler.bind(this)}
+      />)
+    }
+
     return (
       <div className="App" >
         <button className="app-btn"
-          onClick={this.showPersonsHandler}>
+          onClick={this.showPersonsHandler.bind(this)}>
           {!this.state.showPerson ? 'Show Persons' : 'Hide Persons'}
         </button>
-        {this.state.showPerson &&
-          <Persons
-            persons={this.state.persons}
-            deletePerson={this.deletePersonHandler}
-          />}
+        {persons}
       </div>
     );
   }
