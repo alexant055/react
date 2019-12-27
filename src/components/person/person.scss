@@ -1,0 +1,28 @@
+.person {
+    border: 1px solid orange;
+    display: flex;
+
+    button {
+        padding: 10px;
+        background-color: darkgray;
+        color: white;
+        font-weight: bold;
+        font-size: large;
+        width: 120px;
+        height: 40px;
+        margin: auto;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: black;
+        color: white;
+        font-weight: bold;
+        font-size: large;
+    }
+
+    p {
+        width: 200px;
+        padding: 0 20px 0 20px;
+    }
+}
